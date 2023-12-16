@@ -14,7 +14,12 @@ const Film = mongoose.model('Film', {
 
 app.get('/', async (req, res) => {
   const films = await Film.find()
-  res.send(films)
+  return res.send(films)
+})
+
+app.delete("/:id", async (req,res) => {
+  const film = await Film.findByIdAndDelete(req.params.id)
+  return res.send(film)
 })
 
 app.post('/', async (req, res) => {
